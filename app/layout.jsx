@@ -1,27 +1,44 @@
-import { Geist, Geist_Mono } from "next/font/google"
-import "./globals.css"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Header from "@/components/Header";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
+import { Toaster } from "sonner";
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "BudgetBuddy - Smart Money, Simple Life",
-  description:
-    "Transform your financial life with AI-powered finance management. Track expenses, set budgets, and achieve your financial goals effortlessly.",
-    generator: 'v0.app'
-}
+  title: "BudgetBuddy - Finance Platform",
+  description: "Your Personal Finance Companion for Budgeting and Expense Tracking",
+};
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <body className="font-sans">{children}</body>
-    </html>
-  )
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <link rel="icon" href="/logo-sm.png" sizes="any" />
+        </head>
+        <body className={`${inter.className} antialiased`}>
+          <Header />
+          
+          {/* Layout for unauthenticated users */}
+          <SignedOut>
+            <main className="min-h-screen">
+              {children}
+            </main>
+          </SignedOut>
+          
+          {/* Layout for authenticated users */}
+          <SignedIn>
+            <main className="min-h-screen pt-16 bg-muted/30">
+              <div className="container mx-auto p-6">
+                {children}
+              </div>
+            </main>
+          </SignedIn>
+          
+          <Toaster richColors />
+        </body>
+      </html>
+    </ClerkProvider>
+  );
 }

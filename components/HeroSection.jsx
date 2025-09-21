@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Play } from "lucide-react"
-// import heroImage from "@/assets/hero-finance.jpg";
+import { SignedOut, SignInButton } from "@clerk/nextjs"
 
 const HeroSection = () => {
   return (
@@ -29,14 +29,18 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="xl" className="group">
-                Start Free Trial
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button variant="finance-outline" size="xl" className="group">
-                <Play className="mr-2 h-5 w-5" />
-                Watch Demo
-              </Button>
+              <SignedOut>
+                <SignInButton forceRedirectUrl="/dashboard">
+                  <Button size="lg" className="group btn-hero">
+                    Start Free Trial
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </SignInButton>
+                <Button variant="outline" size="lg" className="group btn-finance-outline">
+                  <Play className="mr-2 h-5 w-5" />
+                  Watch Demo
+                </Button>
+              </SignedOut>
             </div>
 
             {/* Trust Indicators */}
@@ -50,7 +54,7 @@ const HeroSection = () => {
                 <div className="text-sm text-muted-foreground">Money Managed</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold gradient-text">4.9★</div>
+                <div className="text-2xl font-bold gradient-text">4.9⭐</div>
                 <div className="text-sm text-muted-foreground">App Rating</div>
               </div>
             </div>

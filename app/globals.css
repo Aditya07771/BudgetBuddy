@@ -167,6 +167,14 @@
   background-clip: text;
 }
 
+/* Gradient Title - Enhanced version for headers */
+.gradient-title {
+  background: linear-gradient(135deg, var(--finance-primary) 0%, var(--finance-secondary) 50%, var(--finance-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Card Gradient */
 .card-gradient {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
@@ -179,12 +187,22 @@
   background-size: 20px 20px;
 }
 
+/* Gradient Backgrounds */
+.bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.bg-gradient-hero {
+  background: var(--gradient-hero);
+}
+
 /* Custom Button Variants */
 .btn-hero {
   background: var(--gradient-primary);
   color: white;
   border: none;
   box-shadow: var(--shadow-finance);
+  transition: all 0.3s ease;
 }
 
 .btn-hero:hover {
@@ -196,11 +214,88 @@
   border: 2px solid var(--finance-primary);
   color: var(--finance-primary);
   background: transparent;
+  transition: all 0.3s ease;
 }
 
 .btn-finance-outline:hover {
   background: var(--finance-primary);
   color: white;
+}
+
+/* Button Variants for Finance Theme */
+.variant-finance {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-finance);
+  transition: all 0.3s ease;
+}
+
+.variant-finance:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 25px -5px rgba(37, 99, 235, 0.15);
+}
+
+.variant-hero {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-finance);
+  transition: all 0.3s ease;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+}
+
+.variant-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.2);
+}
+
+.variant-finance-outline {
+  border: 2px solid var(--finance-primary);
+  color: var(--finance-primary);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.variant-finance-outline:hover {
+  background: var(--finance-primary);
+  color: white;
+}
+
+/* Shadow Utilities */
+.shadow-finance {
+  box-shadow: var(--shadow-finance);
+}
+
+/* Text Colors */
+.text-finance-primary {
+  color: var(--finance-primary);
+}
+
+.text-finance-secondary {
+  color: var(--finance-secondary);
+}
+
+.text-finance-dark {
+  color: var(--finance-dark);
+}
+
+/* Background Colors */
+.bg-finance-primary {
+  background-color: var(--finance-primary);
+}
+
+.bg-finance-secondary {
+  background-color: var(--finance-secondary);
+}
+
+.bg-finance-dark {
+  background-color: var(--finance-dark);
+}
+
+.bg-finance-light {
+  background-color: var(--finance-light);
 }
 
 @layer base {
@@ -210,4 +305,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Additional utility classes for step numbers */
+.step-gradient {
+  background: var(--gradient-primary);
+  color: white;
 }
